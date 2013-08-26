@@ -17,6 +17,7 @@ import com.brightcove.zencoder.client.model.H264Level;
 import com.brightcove.zencoder.client.model.H264Profile;
 import com.brightcove.zencoder.client.model.Notification;
 import com.brightcove.zencoder.client.model.OutputType;
+import com.brightcove.zencoder.client.model.PackageFormat;
 import com.brightcove.zencoder.client.model.S3AccessControl;
 import com.brightcove.zencoder.client.model.SegmentedStream;
 import com.brightcove.zencoder.client.model.SegmentingType;
@@ -46,6 +47,8 @@ public class ZencoderOutput {
     private String secondary_url;
     private String base_url;
     private String filename;
+    private String package_filename;
+    private PackageFormat package_format;
     private String device_profile;
     private Boolean strict;
     private Boolean skip_video;
@@ -214,7 +217,6 @@ public class ZencoderOutput {
     // Transmuxing - https://app.zencoder.com/docs/api/encoding/transmuxing
     private Boolean copy_audio;
     private Boolean copy_video;
-
 
     /**
      * @see https://app.zencoder.com/docs/api/encoding
@@ -524,6 +526,22 @@ public class ZencoderOutput {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public String getPackageFilename() {
+        return package_filename;
+    }
+
+    public void setPackageFilename(String packageFilename) {
+        this.package_filename = packageFilename;
+    }
+
+    public PackageFormat getPackageFormat() {
+        return package_format;
+    }
+
+    public void setPackageFormat(PackageFormat packageFormat) {
+        this.package_format = packageFormat;
     }
 
     public Date getFinishedAt() {
