@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
 /**
  * @see https://app.zencoder.com/docs/api/encoding/thumbnails
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Thumbnail {
 
     private String label;
@@ -23,6 +25,8 @@ public class Thumbnail {
     private Integer width;
     private Integer height;
     private String base_url;
+    private String group_label;
+    private String url;
     private String prefix;
     private String filename;
     @JsonProperty("public") private Boolean publicMode;
@@ -62,6 +66,21 @@ public class Thumbnail {
         this.base_url = baseUrl;
     }
 
+    public String getGroupLabel() {
+        return group_label;
+    }
+
+    public void setGroupLabel(String groupLabel) {
+        this.group_label = groupLabel;
+    }
+
+    public String getUrl(){
+	return url;
+    }
+
+    public void setUrl(String url) {
+	this.url = url;
+    }
     public String getFilename() {
         return filename;
     }
