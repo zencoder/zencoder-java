@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
 /**
  * @see https://app.zencoder.com/docs/api/encoding/thumbnails
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Thumbnail {
 
     private String label;
