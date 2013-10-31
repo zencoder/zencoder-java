@@ -60,6 +60,9 @@ public class ZencoderClient {
         mapper.configure(DeserializationConfig.Feature.READ_ENUMS_USING_TO_STRING, true);
         mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
         mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_EMPTY);
+        // If Zencoder adds a new field before we have a chance to update, silently ignore these fields.
+        // NOTE: disable this during testing
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public String getApiKey() {

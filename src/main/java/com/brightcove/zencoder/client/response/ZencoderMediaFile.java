@@ -39,6 +39,11 @@ public class ZencoderMediaFile {
     private State state;
     private String error_message;
     private String error_class;
+    private Boolean backup_server_used;
+    private String primary_upload_error_link;
+    private String primary_upload_error_message;
+    private String primary_thumbnail_upload_error_link;
+    private String primary_thumbnail_upload_error_message;
 
     private ContainerFormat format;
     private Long duration_in_ms;
@@ -160,6 +165,46 @@ public class ZencoderMediaFile {
 
     public void setErrorClass(String error_class) {
         this.error_class = error_class;
+    }
+
+    public Boolean getBackupServerUsed() {
+        return backup_server_used;
+    }
+
+    public void setBackupServerUsed(Boolean backup_server_used) {
+        this.backup_server_used = backup_server_used;
+    }
+
+    public String getPrimaryUploadErrorLink() {
+        return primary_upload_error_link;
+    }
+
+    public void setPrimaryUploadErrorLink(String primary_upload_error_link) {
+        this.primary_upload_error_link = primary_upload_error_link;
+    }
+
+    public String getPrimaryUploadErrorMessage() {
+        return primary_upload_error_message;
+    }
+
+    public void setPrimaryUploadErrorMessage(String primary_upload_error_message) {
+        this.primary_upload_error_message = primary_upload_error_message;
+    }
+
+    public String getPrimaryThumbnailUploadErrorLink() {
+        return primary_thumbnail_upload_error_link;
+    }
+
+    public void setPrimaryThumbnailUploadErrorLink(String primary_thumbnail_upload_error_link) {
+        this.primary_thumbnail_upload_error_link = primary_thumbnail_upload_error_link;
+    }
+
+    public String getPrimaryThumbnailUploadErrorMessage() {
+        return primary_thumbnail_upload_error_message;
+    }
+
+    public void setPrimaryThumbnailUploadErrorMessage(String primary_thumbnail_upload_error_message) {
+        this.primary_thumbnail_upload_error_message = primary_thumbnail_upload_error_message;
     }
 
     public ContainerFormat getFormat() {
