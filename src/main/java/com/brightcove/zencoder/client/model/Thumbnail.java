@@ -33,7 +33,7 @@ public class Thumbnail {
     private Integer parallel_upload_limit;
 
     /**
-     * @see https://app.zencoder.com/docs/api/encoding/thumbnails
+     * No-arg constructor needed for serialization/deserialization.
      */
     public Thumbnail() {
     }

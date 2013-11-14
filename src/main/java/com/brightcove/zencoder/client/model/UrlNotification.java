@@ -13,6 +13,12 @@ public class UrlNotification extends Notification {
     private Map<String, String> headers;
     private NotificationEvent event;
 
+    /**
+     * No-arg constructor needed for serialization/deserialization.
+     */
+    public UrlNotification() {
+    }
+
     public UrlNotification(String url) {
         this.format = NotificationFormat.JSON;
         this.url = url;

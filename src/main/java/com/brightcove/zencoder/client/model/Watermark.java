@@ -21,6 +21,12 @@ public class Watermark {
     public Watermark(String url) {
         this.url = url;
     }
+
+    /**
+     * No-arg constructor needed for serialization/deserialization.
+     */
+    public Watermark() {
+    }
     
     public String getHeight() {
         return height;

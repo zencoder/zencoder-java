@@ -17,6 +17,12 @@ public class EmailNotification extends Notification {
 
     private String address;
 
+    /**
+     * No-arg constructor needed for serialization/deserialization.
+     */
+    public EmailNotification() {
+    }
+
     public EmailNotification(String address) {
         this.address = address;
     }

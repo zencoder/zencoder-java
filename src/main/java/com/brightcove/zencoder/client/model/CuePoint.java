@@ -25,6 +25,12 @@ public class CuePoint {
     private String name;
     private Map<String, String> data;
 
+    /**
+     * No-arg constructor needed for serialization/deserialization.
+     */
+    public CuePoint() {
+    }
+    
     public CuePointType getType() {
         return type;
     }

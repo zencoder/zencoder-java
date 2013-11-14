@@ -23,6 +23,12 @@ public enum NotificationEvent {
 
     private String name;
 
+    /**
+     * No-arg constructor needed for serialization/deserialization.
+     */
+    NotificationEvent() {
+    }
+
     NotificationEvent(String name) {
         this.name = name;
     }
