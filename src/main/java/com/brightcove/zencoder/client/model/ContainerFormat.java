@@ -34,6 +34,7 @@ public enum ContainerFormat {
     F4V("f4v"),
     FLV("flv"),
     HIGHWINDS("highwinds"),
+    ISM("ism"),
     M4A("m4a"),
     M4B("m4b"),
     M4R("m4r"),
