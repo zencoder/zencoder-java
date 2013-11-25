@@ -43,7 +43,7 @@ List<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
 
 ZencoderOutput output1 = new ZencoderOutput();
 output1.setFormat(ContainerFormat.MP4);
-outputs.add(output1)
+outputs.add(output1);
 
 ZencoderOutput output2 = new ZencoderOutput();
 output2.setFormat(ContainerFormat.WEBM);
@@ -63,8 +63,8 @@ String outputId1 = response.getOutputs().get(0).getId();
 String outputId2 = response.getOutputs().get(1).getId();
         
 ZencoderInputOutputProgress inputProgress = client.getInputProgress(inputId);
-ZencoderInputOutputProgress outputProgress1 = client.getInputProgress(outputId1);
-ZencoderInputOutputProgress outputProgress2 = client.getInputProgress(outputId2);
+ZencoderInputOutputProgress outputProgress1 = client.getOutputProgress(outputId1);
+ZencoderInputOutputProgress outputProgress2 = client.getOutputProgress(outputId2);
 ```
 
 Cancel and resubmit an existing job:
