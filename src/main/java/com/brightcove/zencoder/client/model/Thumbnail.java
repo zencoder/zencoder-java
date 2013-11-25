@@ -1,5 +1,6 @@
 package com.brightcove.zencoder.client.model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @see https://app.zencoder.com/docs/api/encoding/thumbnails
  */
 public class Thumbnail {
+
+    private Long id;
+    private String url;
+    private Date created_at;
+    private Date updated_at;
+    private Long file_size_bytes;
 
     private String label;
     private String format;
@@ -37,7 +44,55 @@ public class Thumbnail {
      */
     public Thumbnail() {
     }
-    
+
+    /**
+     * @see https://app.zencoder.com/docs/api/encoding/thumbnails/thumbnails
+     * @param label The label for this group of thumbnails
+     */
+    public Thumbnail(String label) {
+        this.label = label;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Date getCreatedAt() {
+        return created_at;
+    }
+
+    public void setCreatedAt(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public Date getUpdatedAt() {
+        return updated_at;
+    }
+
+    public void setUpdatedAt(Date updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public Long getFileSizeBytes() {
+        return file_size_bytes;
+    }
+
+    public void setFileSizeBytes(Long file_size_bytes) {
+        this.file_size_bytes = file_size_bytes;
+    }
+
     public List<S3AccessControl> getAccessControl() {
         return access_control;
     }
@@ -110,11 +165,31 @@ public class Thumbnail {
         this.interval_in_frames = intervalInFrames;
     }
 
+    /**
+     * NOTE: label and group_label are the same field.
+     */
     public String getLabel() {
         return label;
     }
 
+    /**
+     * NOTE: label and group_label are the same field.
+     */
     public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * NOTE: label and group_label are the same field.
+     */
+    public String getGroupLabel() {
+        return label;
+    }
+
+    /**
+     * NOTE: label and group_label are the same field.
+     */
+    public void setGroupLabel(String label) {
         this.label = label;
     }
 
@@ -198,4 +273,15 @@ public class Thumbnail {
         this.credentials = credentials;
     }
 
+    public String getDimensions() {
+        return width + "x" + height;
+    }
+
+    public void setDimensions(String dimensions) {
+        if (dimensions != null && dimensions.contains("x")) {
+            String[] pieces = dimensions.split("x");
+            width = Integer.parseInt(pieces[0]);
+            height = Integer.parseInt(pieces[1]);
+        }
+    }
 }

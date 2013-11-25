@@ -1,16 +1,22 @@
 package com.brightcove.zencoder.client;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import com.brightcove.zencoder.client.account.ZencoderAccountDetails;
 import com.brightcove.zencoder.client.account.ZencoderAccountState;
 import com.brightcove.zencoder.client.account.ZencoderBillingState;
 import com.brightcove.zencoder.client.model.ContainerFormat;
+import com.brightcove.zencoder.client.model.State;
+import com.brightcove.zencoder.client.model.Thumbnail;
+import com.brightcove.zencoder.client.model.ThumbnailCollection;
 import com.brightcove.zencoder.client.reports.ZencoderAllUsage;
 import com.brightcove.zencoder.client.reports.ZencoderLiveUsage;
 import com.brightcove.zencoder.client.reports.ZencoderVodUsage;
@@ -19,6 +25,7 @@ import com.brightcove.zencoder.client.request.ZencoderOutput;
 import com.brightcove.zencoder.client.response.ZencoderCreateJobResponse;
 import com.brightcove.zencoder.client.response.ZencoderInputOutputProgress;
 import com.brightcove.zencoder.client.response.ZencoderJobDetail;
+import com.brightcove.zencoder.client.response.ZencoderMediaFile;
 
 public class ZencoderClientTest {
 
@@ -31,6 +38,7 @@ public class ZencoderClientTest {
 
         ZencoderCreateJobRequest job = new ZencoderCreateJobRequest();
         job.setInput("s3://zencodertesting/test.mov");
+        job.setTest(true);
         List<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
 
         ZencoderOutput output1 = new ZencoderOutput();
@@ -96,4 +104,71 @@ public class ZencoderClientTest {
         assertTrue(allUsage.getTotal().getLive().getBillableEncodedHours() == 0);
         assertTrue(allUsage.getTotal().getLive().getEncodedHours() >= 0);
     }
+
+    @Test
+    public void testThumbnails() throws ZencoderClientException, InterruptedException {
+        ZencoderClient client = new ZencoderClient(TEST_API_KEY);
+
+        ZencoderCreateJobRequest job = new ZencoderCreateJobRequest();
+        job.setInput("s3://zencodertesting/test.mov");
+        job.setTest(true);
+        List<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
+
+        ZencoderOutput output1 = new ZencoderOutput();
+        output1.setFormat(ContainerFormat.MP4);
+        List<Thumbnail> thumbnails = new ArrayList<Thumbnail>();
+
+        Thumbnail thumb1 = new Thumbnail();
+        thumb1.setLabel("thumb1");
+        thumb1.setHeight(64);
+        thumb1.setWidth(64);
+        thumbnails.add(thumb1);
+
+        Thumbnail thumb2 = new Thumbnail();
+        thumb2.setLabel("thumb2");
+        thumb2.setHeight(640);
+        thumb2.setWidth(480);
+        thumbnails.add(thumb2);
+        output1.setThumbnails(thumbnails);
+
+        outputs.add(output1);
+        job.setOutputs(outputs);
+        ZencoderCreateJobResponse response = client.createZencoderJob(job);
+
+        String jobId = response.getId();
+        String outputId = response.getOutputs().get(0).getId();
+
+        boolean done = false;
+        while (!done) {
+            ZencoderInputOutputProgress progress = client.getOutputProgress(outputId);
+            if (progress.getState().equals(State.FINISHED)) {
+                done = true;
+            }
+            Thread.sleep(1000);
+        }
+
+        ZencoderJobDetail details = client.getZencoderJob(jobId);
+        assertEquals(1, details.getOutputMediaFiles().size());
+        assertEquals(2, details.getThumbnails().size());
+
+        ZencoderMediaFile outputDetails = client.getOutputDetails(outputId);
+        assertNotNull(outputDetails.getThumbnails());
+        assertEquals(2, outputDetails.getThumbnails().size());
+        for (ThumbnailCollection col : outputDetails.getThumbnails()) {
+            if (col.getLabel().equals("thumb1")) {
+                assertNotNull(col.getImages());
+                assertEquals(1, col.getImages().size());
+                assertEquals("64x36", col.getImages().get(0).getDimensions());
+
+            } else if (col.getLabel().equals("thumb2")) {
+                assertNotNull(col.getImages());
+                assertEquals(1, col.getImages().size());
+                assertEquals("480x270", col.getImages().get(0).getDimensions());
+
+            } else {
+                fail("Invalid thumbnail recived");
+            }
+        }
+    }
+
 }

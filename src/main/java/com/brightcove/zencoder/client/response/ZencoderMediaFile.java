@@ -14,10 +14,12 @@
 package com.brightcove.zencoder.client.response;
 
 import java.util.Date;
+import java.util.List;
 
 import com.brightcove.zencoder.client.model.AudioCodec;
 import com.brightcove.zencoder.client.model.ContainerFormat;
 import com.brightcove.zencoder.client.model.State;
+import com.brightcove.zencoder.client.model.ThumbnailCollection;
 import com.brightcove.zencoder.client.model.VideoCodec;
 
 /**
@@ -62,6 +64,8 @@ public class ZencoderMediaFile {
     private Integer audio_bitrate_in_kbps;
     private Integer audio_sample_rate;
     private Integer channels;
+
+    private List<ThumbnailCollection> thumbnails;
 
     public Date getCreatedAt() {
         return created_at;
@@ -341,6 +345,14 @@ public class ZencoderMediaFile {
 
     public void setChannels(Integer channels) {
         this.channels = channels;
+    }
+
+    public List<ThumbnailCollection> getThumbnails() {
+        return thumbnails;
+    }
+
+    public void setThumbnails(List<ThumbnailCollection> thumbnails) {
+        this.thumbnails = thumbnails;
     }
 
 }

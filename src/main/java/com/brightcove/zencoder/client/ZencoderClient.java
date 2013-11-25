@@ -119,6 +119,7 @@ public class ZencoderClient {
         String body = null;
         try {
             body = mapper.writeValueAsString(job);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to serialize ZencoderCreateJobRequest as JSON",
@@ -147,6 +148,7 @@ public class ZencoderClient {
             zencoderJobResponse = mapper.readValue(
                     response.getBody(),
                     ZencoderCreateJobResponse.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderCreateJobResponse as JSON",
@@ -255,6 +257,7 @@ public class ZencoderClient {
         ZencoderJobDetailResponse job_details = null;
         try {
             job_details = mapper.readValue(response.getBody(), ZencoderJobDetailResponse.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderCreateJobResponse as JSON",
@@ -295,6 +298,7 @@ public class ZencoderClient {
         ZencoderJobProgress job_progress = null;
         try {
             job_progress = mapper.readValue(response.getBody(), ZencoderJobProgress.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderCreateJobResponse as JSON",
@@ -335,6 +339,7 @@ public class ZencoderClient {
         ZencoderInputOutputProgress input_progress = null;
         try {
             input_progress = mapper.readValue(response.getBody(), ZencoderInputOutputProgress.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderInputOutputProgress as JSON",
@@ -377,6 +382,7 @@ public class ZencoderClient {
             output_progress = mapper.readValue(
                     response.getBody(),
                     ZencoderInputOutputProgress.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderInputOutputProgress as JSON",
@@ -418,6 +424,7 @@ public class ZencoderClient {
             input_details = mapper.readValue(
                     response.getBody(),
                     ZencoderMediaFile.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderMediaFile as JSON",
@@ -460,6 +467,7 @@ public class ZencoderClient {
             output_details = mapper.readValue(
                     response.getBody(),
                     ZencoderMediaFile.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderMediaFile as JSON",
@@ -569,6 +577,7 @@ public class ZencoderClient {
         String body = null;
         try {
             body = mapper.writeValueAsString(account);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to serialize ZencoderAccount as JSON", e);
@@ -595,6 +604,7 @@ public class ZencoderClient {
         try {
             zencoderAccountResponse = mapper.readValue(response.getBody(),
                     ZencoderAccount.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderAccount as JSON", e);
@@ -634,6 +644,7 @@ public class ZencoderClient {
             account_details = mapper.readValue(
                     response.getBody(),
                     ZencoderAccountDetails.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderAccountDetails as JSON",
@@ -721,6 +732,7 @@ public class ZencoderClient {
             usage = mapper.readValue(
                     response.getBody(),
                     ZencoderVodUsage.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderVodUsage as JSON",
@@ -772,6 +784,7 @@ public class ZencoderClient {
             usage = mapper.readValue(
                     response.getBody(),
                     ZencoderLiveUsage.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderLiveUsage as JSON",
@@ -824,6 +837,7 @@ public class ZencoderClient {
             usage = mapper.readValue(
                     response.getBody(),
                     ZencoderAllUsage.class);
+
         } catch (Exception e) {
             throw new ZencoderClientException(
                     "Unable to deserialize ZencoderLiveUsage as JSON",
