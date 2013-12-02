@@ -11,10 +11,12 @@ import org.junit.Test;
 import com.brightcove.zencoder.client.account.ZencoderAccountDetails;
 import com.brightcove.zencoder.client.account.ZencoderAccountState;
 import com.brightcove.zencoder.client.account.ZencoderBillingState;
+import com.brightcove.zencoder.client.model.AudioCodec;
 import com.brightcove.zencoder.client.model.ContainerFormat;
 import com.brightcove.zencoder.client.model.State;
 import com.brightcove.zencoder.client.model.Thumbnail;
 import com.brightcove.zencoder.client.model.ThumbnailCollection;
+import com.brightcove.zencoder.client.model.VideoCodec;
 import com.brightcove.zencoder.client.reports.ZencoderAllUsage;
 import com.brightcove.zencoder.client.reports.ZencoderLiveUsage;
 import com.brightcove.zencoder.client.reports.ZencoderVodUsage;
@@ -180,6 +182,16 @@ public class ZencoderClientTest {
 
         assertEquals(ContainerFormat.TS, mapper.readValue("\"ts\"", ContainerFormat.class));
         assertEquals(ContainerFormat.TS, mapper.readValue("\"mpeg-ts\"", ContainerFormat.class));
+    }
+
+    @Test
+    public void testEnumsWithUnsupportedRepresentations() throws Exception {
+        ZencoderClient client = new ZencoderClient(TEST_API_KEY);
+        ObjectMapper mapper = client.createObjectMapper();
+
+        assertEquals(ContainerFormat.UNKNOWN, mapper.readValue("\"avi\"", ContainerFormat.class));
+        assertEquals(VideoCodec.UNKNOWN, mapper.readValue("\"flv1\"", VideoCodec.class));
+        assertEquals(AudioCodec.UNKNOWN, mapper.readValue("\"wav\"", AudioCodec.class));
     }
 
 }

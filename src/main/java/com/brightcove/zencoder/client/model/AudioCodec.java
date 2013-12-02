@@ -19,7 +19,13 @@ public enum AudioCodec {
     EAC3("eac3"),
     MP3("mp3"),
     VORBIS("vorbis"),
-    WMA("wma", "wmav2");
+    WMA("wma", "wmav2"),
+
+    /**
+     * This is necessary to support every possible input format Zencoder can
+     * consume, but not produce as outputs.
+     */
+    UNKNOWN("null");
 
     private String name;
     private List<String> others;
@@ -60,7 +66,7 @@ public enum AudioCodec {
                 return format;
             }
         }
-        throw new JsonMappingException("Unable to deserialize AudioCodec: " + other);
+        return UNKNOWN;
     }
 
 }

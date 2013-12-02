@@ -65,7 +65,13 @@ public enum ContainerFormat {
     TS("ts", "mpeg-ts"),
     WEBM("webm"),
     WMA("wma", "asf"),
-    WMV("wmv");
+    WMV("wmv"),
+
+    /**
+     * This is necessary to support every possible input format Zencoder can
+     * consume, but not produce as outputs.
+     */
+    UNKNOWN("null");
 
     private String name;
     private List<String> others;
@@ -106,7 +112,7 @@ public enum ContainerFormat {
                 return format;
             }
         }
-        throw new JsonMappingException("Unable to deserialize ContainerFormat: " + other);
+        return UNKNOWN;
     }
 
 }

@@ -18,7 +18,13 @@ public enum VideoCodec {
     THEORA("theora"),
     VP6("vp6", "vp6f"),
     VP8("vp8"),
-    WMV("wmv", "wmv2");
+    WMV("wmv", "wmv2"),
+
+    /**
+     * This is necessary to support every possible input format Zencoder can
+     * consume, but not produce as outputs.
+     */
+    UNKNOWN("null");
 
     private String name;
     private List<String> others;
@@ -59,7 +65,7 @@ public enum VideoCodec {
                 return format;
             }
         }
-        throw new JsonMappingException("Unable to deserialize VideoCodec: " + other);
+        return UNKNOWN;
     }
 
 }
