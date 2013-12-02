@@ -55,21 +55,28 @@ public class ZencoderClient {
     private RestTemplate rt;
     private ObjectMapper mapper;
 
-    @SuppressWarnings("deprecation")
     public ZencoderClient(String api_key) {
         this.api_key = api_key;
         this.api_url = API_URL;
         this.rt = new RestTemplate();
-        this.mapper = new ObjectMapper();
+        this.mapper = createObjectMapper();
+    }
 
-        mapper.configure(SerializationConfig.Feature.WRITE_NULL_PROPERTIES, false);
-        mapper.configure(SerializationConfig.Feature.WRITE_ENUMS_USING_TO_STRING, true);
-        mapper.configure(DeserializationConfig.Feature.READ_ENUMS_USING_TO_STRING, true);
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
-        mapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_EMPTY);
+    /**
+     * Abstracted out for easier testing.
+     */
+    @SuppressWarnings("deprecation")
+    protected ObjectMapper createObjectMapper() {
+        ObjectMapper m = new ObjectMapper();
+        m.configure(SerializationConfig.Feature.WRITE_NULL_PROPERTIES, false);
+        m.configure(SerializationConfig.Feature.WRITE_ENUMS_USING_TO_STRING, true);
+        m.configure(DeserializationConfig.Feature.READ_ENUMS_USING_TO_STRING, true);
+        m.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        m.setSerializationInclusion(JsonSerialize.Inclusion.NON_EMPTY);
         // If Zencoder adds a new field before we have a chance to update, silently ignore these fields.
         // NOTE: disable this during testing
-        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        m.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return m;
     }
 
     public String getApiKey() {

@@ -1,13 +1,11 @@
 package com.brightcove.zencoder.client;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
 import com.brightcove.zencoder.client.account.ZencoderAccountDetails;
@@ -86,7 +84,6 @@ public class ZencoderClientTest {
         assertTrue(vodUsage.getTotal().getBillableMinutes() == 0);
         assertTrue(vodUsage.getTotal().getEncodedMinutes() >= 0);
         assertNotNull(vodUsage.getStatistics());
-        assertEquals(0, vodUsage.getStatistics().size());
 
         ZencoderLiveUsage liveUsage = client.getUsageForLive(null, null, null);
         assertNotNull(liveUsage);
@@ -94,7 +91,6 @@ public class ZencoderClientTest {
         assertTrue(liveUsage.getTotal().getBillableStreamHours() == 0);
         assertTrue(liveUsage.getTotal().getStreamHours() >= 0);
         assertNotNull(liveUsage.getStatistics());
-        assertEquals(0, liveUsage.getStatistics().size());
 
         ZencoderAllUsage allUsage = client.getUsageForVodAndLive(null, null, null);
         assertNotNull(allUsage);
@@ -169,6 +165,21 @@ public class ZencoderClientTest {
                 fail("Invalid thumbnail recived");
             }
         }
+    }
+
+    @Test
+    public void testEnumsWithMultipleRepresentations() throws Exception {
+        ZencoderClient client = new ZencoderClient(TEST_API_KEY);
+        ObjectMapper mapper = client.createObjectMapper();
+
+        assertEquals(ContainerFormat.MP4, mapper.readValue("\"mp4\"", ContainerFormat.class));
+        assertEquals(ContainerFormat.MP4, mapper.readValue("\"mpeg4\"", ContainerFormat.class));
+
+        assertEquals(ContainerFormat.FLV, mapper.readValue("\"flv\"", ContainerFormat.class));
+        assertEquals(ContainerFormat.FLV, mapper.readValue("\"flash video\"", ContainerFormat.class));
+
+        assertEquals(ContainerFormat.TS, mapper.readValue("\"ts\"", ContainerFormat.class));
+        assertEquals(ContainerFormat.TS, mapper.readValue("\"mpeg-ts\"", ContainerFormat.class));
     }
 
 }
