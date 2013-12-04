@@ -11,7 +11,7 @@ If you're using Maven, add this to your pom.xml file:
 
         <dependency>
               <groupId>com.brightcove.zencoder.api</groupId>
-              <artifactId>zencoder-client</artifactId>
+              <artifactId>zencoder-java</artifactId>
               <version>2.0.14</version>
         </dependency>
 
