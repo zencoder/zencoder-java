@@ -4,7 +4,7 @@
     <artifactId>zencoder-java</artifactId>
     <packaging>jar</packaging>
     <name>Zencoder API Client Library</name>
-    <version>2.0.17-SNAPSHOT</version>
+    <version>2.0.17</version>
     <description>An API client library for interacting with Zencoder</description>
     <url>https://github.com/zencoder/zencoder-java</url>
     <parent>
