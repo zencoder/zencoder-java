@@ -519,7 +519,7 @@ public class ZencoderClient {
      * @throws ZencoderClientException
      */
     public void cancelJob(String id) throws ZencoderClientException {
-        String url = api_url + "/jobs/" + id + "/resubmit.json";
+        String url = api_url + "/jobs/" + id + "/cancel.json";
 
         HttpHeaders headers = getHeaders();
         @SuppressWarnings("rawtypes")
