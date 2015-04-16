@@ -21,6 +21,7 @@ public enum State {
     FAILED("failed"),
     CANCELLED("cancelled"),
     NO_INPUT("no_input"),
+    UPLOADING("uploading"),
     SKIPPED("skipped");
 
     private String name;
