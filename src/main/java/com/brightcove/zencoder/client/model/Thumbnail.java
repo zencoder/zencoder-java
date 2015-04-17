@@ -1,5 +1,6 @@
 package com.brightcove.zencoder.client.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class Thumbnail {
     private Boolean start_at_first_frame;
     private Double interval;
     private Double interval_in_frames;
-    private List<Integer> times;
+    private List<Integer> times = new ArrayList<Integer>();
     private AspectMode aspect_mode;
     private String size;
     private Integer width;
@@ -33,7 +34,7 @@ public class Thumbnail {
     private String prefix;
     private String filename;
     @JsonProperty("public") private Boolean publicMode;
-    private List<S3AccessControl> access_control;
+    private List<S3AccessControl> access_control = new ArrayList<S3AccessControl>();
     private Boolean rrs;
     private Map<String, String> headers;
     private String credentials;
