@@ -49,7 +49,7 @@ public class ZencoderMediaFile {
 
     private ContainerFormat format;
     private Long duration_in_ms;
-    private Integer total_bitrate_in_kbps;
+    private Long total_bitrate_in_kbps;
 
     private Long file_size_in_bytes;
     private String md5_checksum;
@@ -57,11 +57,11 @@ public class ZencoderMediaFile {
     private Integer height;
     private Integer width;
     private VideoCodec video_codec;
-    private Integer video_bitrate_in_kbps;
+    private Long video_bitrate_in_kbps;
     private Double frame_rate;
 
     private AudioCodec audio_codec;
-    private Integer audio_bitrate_in_kbps;
+    private Long audio_bitrate_in_kbps;
     private Integer audio_sample_rate;
     private Integer channels;
 
@@ -227,11 +227,11 @@ public class ZencoderMediaFile {
         this.duration_in_ms = duration_in_ms;
     }
 
-    public Integer getTotalBitrateInKbps() {
+    public Long getTotalBitrateInKbps() {
         return total_bitrate_in_kbps;
     }
 
-    public void setTotalBitrateInKbps(Integer total_bitrate_in_kbps) {
+    public void setTotalBitrateInKbps(Long total_bitrate_in_kbps) {
         this.total_bitrate_in_kbps = total_bitrate_in_kbps;
     }
 
@@ -299,11 +299,11 @@ public class ZencoderMediaFile {
         this.video_codec = video_codec;
     }
 
-    public Integer getVideoBitrateInKbps() {
+    public Long getVideoBitrateInKbps() {
         return video_bitrate_in_kbps;
     }
 
-    public void setVideoBitrateInKbps(Integer video_bitrate_in_kbps) {
+    public void setVideoBitrateInKbps(Long video_bitrate_in_kbps) {
         this.video_bitrate_in_kbps = video_bitrate_in_kbps;
     }
 
@@ -323,11 +323,11 @@ public class ZencoderMediaFile {
         this.audio_codec = audio_codec;
     }
 
-    public Integer getAudioBitrateInKbps() {
+    public Long getAudioBitrateInKbps() {
         return audio_bitrate_in_kbps;
     }
 
-    public void setAudioBitrateInKbps(Integer audio_bitrate_in_kbps) {
+    public void setAudioBitrateInKbps(Long audio_bitrate_in_kbps) {
         this.audio_bitrate_in_kbps = audio_bitrate_in_kbps;
     }
 

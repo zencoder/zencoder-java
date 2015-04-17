@@ -106,7 +106,7 @@ public class ZencoderClient {
     private HttpHeaders getHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/json");
-        headers.add("Content-Type", "application/json");
+        headers.add("Content-Type", "application/json; charset=utf-8");
         headers.add("Zencoder-Api-Key", api_key);
         headers.add("User-Agent", "zencoder-java-2.0");
         return headers;
