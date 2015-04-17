@@ -1,5 +1,6 @@
 package com.brightcove.zencoder.client.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ import java.util.List;
 public class ThumbnailCollection {
 
     private String label;
-    private List<Thumbnail> images;
+    private List<Thumbnail> images = new ArrayList<Thumbnail>();
 
     public String getLabel() {
         return label;

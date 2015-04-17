@@ -1,5 +1,6 @@
 package com.brightcove.zencoder.client.request;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -98,10 +99,10 @@ public class ZencoderOutput {
     private Integer audio_channels;
 
     // Thumbnails - https://app.zencoder.com/docs/api/encoding/thumbnails
-    private List<Thumbnail> thumbnails;
+    private List<Thumbnail> thumbnails = new ArrayList<Thumbnail>();
     
     // Watermarks - https://app.zencoder.com/docs/api/encoding/watermarks
-    private List<Watermark> watermarks;
+    private List<Watermark> watermarks = new ArrayList<Watermark>();
 
     // Captions - https://app.zencoder.com/docs/api/encoding/captions
     private String caption_url;
@@ -143,7 +144,7 @@ public class ZencoderOutput {
     private String clip_length;
 
     // Notifications
-    private List<Notification> notifications;
+    private List<Notification> notifications = new ArrayList<Notification>();
 
     // S3 settings - https://app.zencoder.com/docs/api/encoding/s3-settings
     @JsonProperty("public") private Boolean publicMode;
@@ -159,7 +160,7 @@ public class ZencoderOutput {
     // Segmented Streaming - https://app.zencoder.com/docs/api/encoding/segmented-streaming
     private Integer segment_seconds;
     private Integer segment_size;
-    private List<SegmentedStream> streams;
+    private List<SegmentedStream> streams = new ArrayList<SegmentedStream>();
     private String segment_image_file;
     private Boolean segment_video_snapshots;
     private Integer max_hls_protocol_version;
@@ -186,7 +187,7 @@ public class ZencoderOutput {
     private Integer crf;
 
     // FLV - https://app.zencoder.com/docs/api/encoding/flv
-    private List<CuePoint> cue_points;
+    private List<CuePoint> cue_points = new ArrayList<CuePoint>();
 
     // VP6 - https://app.zencoder.com/docs/api/encoding/vp6
     private Integer vp6_temporal_down_watermark;

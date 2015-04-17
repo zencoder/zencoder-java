@@ -1,5 +1,6 @@
 package com.brightcove.zencoder.client.request;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -16,7 +17,7 @@ public class ZencoderCreateJobRequest {
 
     private String api_key;
     private String input;
-    private List<ZencoderOutput> outputs;
+    private List<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
     private Region region;
     private Boolean test;
     @JsonProperty("private") private Boolean privacy;
@@ -29,7 +30,7 @@ public class ZencoderCreateJobRequest {
     private Long transfer_maximum_rate;
     private String expected_md5_checksum;
     private String credentials;
-    private List<Notification> notifications;
+    private List<Notification> notifications = new ArrayList<Notification>();
     private Boolean live_stream;
     private Integer event_length;
     private Integer reconnect_time;
