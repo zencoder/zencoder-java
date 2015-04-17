@@ -11,11 +11,14 @@ import org.junit.Test;
 import com.brightcove.zencoder.client.account.ZencoderAccountDetails;
 import com.brightcove.zencoder.client.account.ZencoderAccountState;
 import com.brightcove.zencoder.client.account.ZencoderBillingState;
+import com.brightcove.zencoder.client.model.AACProfile;
 import com.brightcove.zencoder.client.model.AudioCodec;
 import com.brightcove.zencoder.client.model.ContainerFormat;
+import com.brightcove.zencoder.client.model.EmailNotification;
 import com.brightcove.zencoder.client.model.State;
 import com.brightcove.zencoder.client.model.Thumbnail;
 import com.brightcove.zencoder.client.model.ThumbnailCollection;
+import com.brightcove.zencoder.client.model.UrlNotification;
 import com.brightcove.zencoder.client.model.VideoCodec;
 import com.brightcove.zencoder.client.reports.ZencoderAllUsage;
 import com.brightcove.zencoder.client.reports.ZencoderLiveUsage;
@@ -194,4 +197,26 @@ public class ZencoderClientTest {
         assertEquals(AudioCodec.UNKNOWN, mapper.readValue("\"wav\"", AudioCodec.class));
     }
 
+    @Test
+    public void testNotificationSerialization() throws Exception {
+        ZencoderClient client = new ZencoderClient(TEST_API_KEY);
+        ObjectMapper mapper = client.createObjectMapper();
+
+        ZencoderCreateJobRequest job = new ZencoderCreateJobRequest();
+        job.setInput("s3://zencodertesting/test.mov");
+        job.setTest(true);
+
+        EmailNotification emailNotification = new EmailNotification("foo@example.com");
+        job.getNotifications().add(emailNotification);
+        UrlNotification urlNotification = new UrlNotification("http://www.example.com/");
+        job.getNotifications().add(urlNotification);
+
+        ZencoderOutput output1 = new ZencoderOutput();
+        output1.setFormat(ContainerFormat.MP4);
+        output1.setForceAACProfile(AACProfile.AAC_LC);
+        job.getOutputs().add(output1);
+
+        final String emailNotificationJson = mapper.writeValueAsString(job);
+        assertEquals("{\"input\":\"s3://zencodertesting/test.mov\",\"outputs\":[{\"format\":\"mp4\",\"force_aacprofile\":\"aac-lc\"}],\"test\":true,\"notifications\":[\"foo@example.com\",{\"format\":\"json\",\"url\":\"http://www.example.com/\"}]}", emailNotificationJson);
+    }
 }
