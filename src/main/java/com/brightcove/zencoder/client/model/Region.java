@@ -10,7 +10,7 @@ public enum Region {
     EUROPE("europe"),
     ASIA("asia"),
     SA("sa"),
-    US_N_VIRGINIA("us-n-virginia"),
+    US_VIRGINIA("us-virginia"),
     US_OREGON("us-oregon"),
     US_N_CALIFORNIA("us-n-california"),
     EU_DUBLIN("eu-dublin"),
