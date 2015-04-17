@@ -16,6 +16,7 @@ public enum Region {
     EU_DUBLIN("eu-dublin"),
     ASIA_SINGAPORE("asia-singapore"),
     ASIA_TOKYO("asia-tokyo"),
+    AUSTRALIA_SYDNEY("australia-sydney"),
     SA_SAOPAULO("sa-saopaulo");
 
     private String name;
