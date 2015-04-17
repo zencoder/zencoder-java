@@ -12,7 +12,7 @@ If you're using Maven, add this to your pom.xml file:
         <dependency>
               <groupId>com.brightcove.zencoder.api</groupId>
               <artifactId>zencoder-java</artifactId>
-              <version>2.0.18</version>
+              <version>2.0.19</version>
         </dependency>
 
 
