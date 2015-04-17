@@ -13,6 +13,8 @@
  */
 package com.brightcove.zencoder.client.model;
 
+import org.codehaus.jackson.annotate.JsonValue;
+
 public class EmailNotification extends Notification {
 
     private String address;
@@ -27,6 +29,7 @@ public class EmailNotification extends Notification {
         this.address = address;
     }
 
+    @JsonValue
     @Override
     public String toString() {
         return this.address;
