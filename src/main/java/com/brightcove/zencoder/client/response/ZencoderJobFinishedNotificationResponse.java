@@ -19,18 +19,18 @@ import com.brightcove.zencoder.client.request.ZencoderOutput;
 import com.brightcove.zencoder.client.response.ZencoderJobDetail;
 import com.brightcove.zencoder.client.response.ZencoderMediaFile;
 
-public class ZencoderNotificationResponse {
+public class ZencoderJobFinishedNotificationResponse {
 
-	private ZencoderJobDetail job;
-	private Collection<ZencoderOutput> outputs;
-	private ZencoderMediaFile input;
+    private ZencoderJobDetail job;
+    private Collection<ZencoderOutput> outputs;
+    private ZencoderMediaFile input;
 
-    public void setJobDetail(ZencoderJobDetail jobDetail) {
-        return jobDetail;
+    public void setJob(ZencoderJobDetail jobDetail) {
+        this.job = jobDetail;
     }
 
-    public ZencoderJobDetail getJobDetail() {
-        return jobDetail;
+    public ZencoderJobDetail getJob() {
+        return job;
     }
 
     public void setOutputs(Collection<ZencoderOutput> outputs) {
@@ -42,11 +42,10 @@ public class ZencoderNotificationResponse {
     }
 
     public void setInput(ZencoderMediaFile mediaFile) {
-        this.mediaFile = mediaFile;
+        this.input = mediaFile;
     }
 
-    public String getInput() {
-        return mediaFile;
+    public ZencoderMediaFile getInput() {
+        return input;
     }
 }
-
