@@ -442,6 +442,30 @@ public class ZencoderClient {
     }
 
     /**
+     * Parses payload from Zencoder notification.
+     *
+     * @param HttpEntity
+     * @return ZencoderNotificationResponse
+     * @throws ZencoderClientException
+     */
+    public ZencoderNotificationResponse parseNotificationResponse(HttpEntity<String> entity) throws ZencoderClientException {
+
+        ZencoderNotificationResponse response = null;
+        try {
+            response = mapper.readValue(
+                    entity.getBody(),
+                    ZencoderNotificationResponse.class);
+
+        } catch (Exception e) {
+            throw new ZencoderClientException(
+                    "Unable to deserialize ZencoderNotificationResponse as JSON",
+                    e);
+        }
+
+        return response;
+    }
+
+    /**
      * Gets the details of a given output.
      *
      * @see https://app.zencoder.com/docs/api/outputs/show
