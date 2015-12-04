@@ -149,7 +149,7 @@ public class ZencoderOutput {
     // S3 settings - https://app.zencoder.com/docs/api/encoding/s3-settings
     @JsonProperty("public") private Boolean publicMode;
     private Boolean rrs;
-    private S3AccessControl access_control;
+    private List<S3AccessControl> access_control = new ArrayList<S3AccessControl>();
 
     // Conditionals - https://app.zencoder.com/docs/api/encoding/conditional-outputs
     private String min_size;
@@ -233,11 +233,11 @@ public class ZencoderOutput {
         this.url = url;
     }
 
-    public S3AccessControl getAccessControl() {
+    public List<S3AccessControl> getAccessControl() {
         return access_control;
     }
 
-    public void setAccessControl(S3AccessControl accessControl) {
+    public void setAccessControl(List<S3AccessControl> accessControl) {
         this.access_control = accessControl;
     }
 
