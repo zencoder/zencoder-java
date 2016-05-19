@@ -26,6 +26,7 @@ public class SegmentedStream {
     private String path;
     private Integer bandwidth;
     private String codecs;
+    private String source;
 
     /**
      * No-arg constructor needed for serialization/deserialization.
@@ -67,5 +68,13 @@ public class SegmentedStream {
 
     public void setCodecs(String codecs) {
         this.codecs = codecs;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

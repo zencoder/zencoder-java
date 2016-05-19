@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.brightcove.zencoder.client.model.DeliveryFormat;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.brightcove.zencoder.client.model.AACProfile;
@@ -158,6 +159,7 @@ public class ZencoderOutput {
     private Integer max_duration;
 
     // Segmented Streaming - https://app.zencoder.com/docs/api/encoding/segmented-streaming
+    private DeliveryFormat streaming_delivery_format;
     private Integer segment_seconds;
     private Integer segment_size;
     private List<SegmentedStream> streams = new ArrayList<SegmentedStream>();
@@ -165,7 +167,7 @@ public class ZencoderOutput {
     private Boolean segment_video_snapshots;
     private Integer max_hls_protocol_version;
     private Boolean hls_optimized_ts;
-    private SegmentingType prepare_for_segmenting;
+    private List<SegmentingType> prepare_for_segmenting = new ArrayList<SegmentingType>();
     private Boolean instant_play;
     private String smil_base_url;
 
@@ -921,6 +923,14 @@ public class ZencoderOutput {
         this.max_duration = max_duration;
     }
 
+    public DeliveryFormat getStreamingDeliveryFormat() {
+        return streaming_delivery_format;
+    }
+
+    public void setStreamingDeliveryFormat(DeliveryFormat streaming_delivery_format) {
+        this.streaming_delivery_format = streaming_delivery_format;
+    }
+
     public Integer getSegmentSeconds() {
         return segment_seconds;
     }
@@ -977,12 +987,17 @@ public class ZencoderOutput {
         this.hls_optimized_ts = hls_optimized_ts;
     }
 
-    public SegmentingType getPrepareForSegmenting() {
+    public List<SegmentingType> getPrepareForSegmenting() {
         return prepare_for_segmenting;
     }
 
     public void setPrepareForSegmenting(SegmentingType prepare_for_segmenting) {
-        this.prepare_for_segmenting = prepare_for_segmenting;
+        this.prepare_for_segmenting = new ArrayList<SegmentingType>();
+        this.prepare_for_segmenting.add(prepare_for_segmenting);
+    }
+
+    public void addPrepareForSegmenting(SegmentingType prepare_for_segmenting) {
+        this.prepare_for_segmenting.add(prepare_for_segmenting);
     }
 
     public Boolean getInstantPlay() {
