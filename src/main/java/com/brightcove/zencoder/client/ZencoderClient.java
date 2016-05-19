@@ -42,6 +42,7 @@ import com.brightcove.zencoder.client.response.ZencoderCreateJobResponse;
 import com.brightcove.zencoder.client.response.ZencoderInputOutputProgress;
 import com.brightcove.zencoder.client.response.ZencoderJobDetail;
 import com.brightcove.zencoder.client.response.ZencoderJobDetailResponse;
+import com.brightcove.zencoder.client.response.ZencoderJobFinishedNotificationResponse;
 import com.brightcove.zencoder.client.response.ZencoderJobProgress;
 import com.brightcove.zencoder.client.response.ZencoderMediaFile;
 
@@ -439,6 +440,30 @@ public class ZencoderClient {
         }
 
         return input_details;
+    }
+
+    /**
+     * Parses payload from Zencoder notification.
+     *
+     * @param HttpEntity
+     * @return ZencoderJobFinishedNotificationResponse
+     * @throws ZencoderClientException
+     */
+    public ZencoderJobFinishedNotificationResponse parseJobFinishedNotificationResponse(HttpEntity<String> entity) throws ZencoderClientException {
+
+        ZencoderJobFinishedNotificationResponse response = null;
+        try {
+            response = mapper.readValue(
+                    entity.getBody(),
+                    ZencoderJobFinishedNotificationResponse.class);
+
+        } catch (Exception e) {
+            throw new ZencoderClientException(
+                    "Unable to deserialize ZencoderNotificationResponse as JSON",
+                    e);
+        }
+
+        return response;
     }
 
     /**
