@@ -42,4 +42,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
+    </properties>
 </project>
