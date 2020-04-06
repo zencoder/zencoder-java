@@ -52,6 +52,7 @@ public enum ContainerFormat {
     ISM("ism"),
     M4A("m4a"),
     M4B("m4b"),
+    M4F("m4f"),
     M4R("m4r"),
     M4V("m4v"),
     MKV("mkv", "matroska"),
