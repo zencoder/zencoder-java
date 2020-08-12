@@ -138,6 +138,7 @@ public class ZencoderOutput {
     private Double audio_fade_in;
     private Double audio_fade_out;
     private Boolean audio_karaoke_mode;
+    private Float audio_loudness_level;
 
     // Clips
     // TODO: these should be a timecode (HH:MM:SS.S) or positive number indicating seconds
@@ -1308,4 +1309,11 @@ public class ZencoderOutput {
         this.live_sliding_window_duration = live_sliding_window_duration;
     }
 
+    public Float getAudioLoudnessLevel() {
+        return audio_loudness_level;
+    }
+
+    public void setAudioLoudnessLevel(Float audio_loudness_level) {
+        this.audio_loudness_level = audio_loudness_level;
+    }
 }
