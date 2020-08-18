@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import java.util.Calendar;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
@@ -128,8 +129,11 @@ public class ZencoderClientTest {
         assertTrue(allUsage.getTotal().getLive().getEncodedHours() >= 0);
 
         // Confirm date formatting is handled correctly.
-        Date from = new Date(2020,8,10);
-        Date to = new Date(2020,8,18);
+        Calendar cal = Calendar.getInstance();
+        cal.set(2020, 8, 10, 6, 15);
+        Date from = cal.getTime();
+        cal.set(2020, 8, 18, 13, 45);
+        Date to = cal.getTime();
         ZencoderVodUsage vodUsage2 = client.getUsageForVod(from, to, null);
     }
 
