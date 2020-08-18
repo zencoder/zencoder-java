@@ -8,7 +8,7 @@ import java.util.Locale;
 public class ZencoderDate {
 
     // Year Month Day Timezone
-    private static final String DATE_FORMAT = "yyyy-mm-dd z";
+    private static final String DATE_FORMAT = "yyyy-MM-dd z";
 
     /**
      * Converts a Zencoder Date 'YYYY-MM-DD' into a Java Date.
