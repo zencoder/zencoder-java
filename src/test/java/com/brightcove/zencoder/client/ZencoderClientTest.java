@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
@@ -125,6 +126,11 @@ public class ZencoderClientTest {
         assertTrue(allUsage.getTotal().getVod().getEncodedMinutes() >= 0);
         assertTrue(allUsage.getTotal().getLive().getBillableEncodedHours() == 0);
         assertTrue(allUsage.getTotal().getLive().getEncodedHours() >= 0);
+
+        // Confirm date formatting is handled correctly.
+        Date from = new Date(2020,8,10);
+        Date to = new Date(2020,8,18);
+        ZencoderVodUsage vodUsage2 = client.getUsageForVod(from, to, null);
     }
 
     @Test
