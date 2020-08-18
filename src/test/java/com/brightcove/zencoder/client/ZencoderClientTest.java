@@ -70,6 +70,27 @@ public class ZencoderClientTest {
     }
 
     @Test
+    public void testTranscodeSettings() throws ZencoderClientException {
+        ZencoderClient client = new ZencoderClient(TEST_API_KEY);
+
+        ZencoderCreateJobRequest job = new ZencoderCreateJobRequest();
+        job.setInput("s3://zencodertesting/test.mov");
+        job.setTest(true);
+        List<ZencoderOutput> outputs = new ArrayList<ZencoderOutput>();
+
+        ZencoderOutput output1 = new ZencoderOutput();
+        output1.setFormat(ContainerFormat.M4F);
+        assertEquals("m4f", output1.getFormat().toString());
+
+        assertNull(output1.getAudioLoudnessLevel());
+        output1.setAudioLoudnessLevel(-23.0);
+        assert(-23.0 == output1.getAudioLoudnessLevel());
+        output1.setAudioLoudnessLevel(null);
+        assertNull(output1.getAudioLoudnessLevel());
+
+    }
+
+    @Test
     public void testAccounts() throws ZencoderClientException {
         ZencoderClient client = new ZencoderClient(TEST_API_KEY);
         ZencoderAccountDetails details = client.getAccountDetails();
