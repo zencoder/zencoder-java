@@ -12,7 +12,7 @@ If you're using Maven, add this to your pom.xml file:
         <dependency>
               <groupId>com.brightcove.zencoder.api</groupId>
               <artifactId>zencoder-java</artifactId>
-              <version>2.0.22</version>
+              <version>2.0.23</version>
         </dependency>
 
 
@@ -61,7 +61,7 @@ ZencoderJobDetail details = client.getZencoderJob(jobId);
 String inputId = details.getInputMediaFile().getId();
 String outputId1 = response.getOutputs().get(0).getId();
 String outputId2 = response.getOutputs().get(1).getId();
-        
+
 ZencoderInputOutputProgress inputProgress = client.getInputProgress(inputId);
 ZencoderInputOutputProgress outputProgress1 = client.getOutputProgress(outputId1);
 ZencoderInputOutputProgress outputProgress2 = client.getOutputProgress(outputId2);
